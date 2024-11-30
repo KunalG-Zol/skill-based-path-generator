@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill Learning Path</title>
+  <link rel="stylesheet" href="style.css"> <!-- Optional CSS link -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .form-container {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    .form-container h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .form-group input[type="text"],
+    .form-group button {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .form-group button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .form-group button:hover {
+      background: #45a049;
+    }
+    .checkbox-group {
+      margin-top: 10px;
+    }
+    .checkbox-group label {
+      display: inline-block;
+      margin-right: 10px;
+      font-weight: normal;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Skill Learning Path</h1>
+   <form id="skillForm" action="/submit-skill" method="POST"></form> 
+      <!-- Skill Input -->
+      <div class="form-group">
+        <label for="skill">Skill you want to learn:</label>
+        <input type="text" id="skill" name="skill" placeholder="e.g., JavaScript" required>
+      </div>
+
+      <!-- Preferred Learning Format -->
+      <div class="form-group">
+        <label>Preferred learning formats:</label>
+        <div class="checkbox-group">
+          <label>
+            <input type="checkbox" name="format" value="books"> Books
+          </label>
+          <label>
+            <input type="checkbox" name="format" value="youtube"> YouTube
+          </label>
+          <label>
+            <input type="checkbox" name="format" value="paid_courses"> Paid Courses
+          </label>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="form-group">
+        <button type="submit">Generate Path</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    document.getElementById("skillForm").addEventListener("submit", function (event) {
+      // Custom JavaScript for client-side validation or feedback
+      const selectedFormats = Array.from(document.querySelectorAll('input[name="format"]:checked')).map(input => input.value);
+      if (selectedFormats.length === 0) {
+        event.preventDefault(); // Prevent form submission
+        alert("Please select at least one preferred learning format.");
+      }
+    });
+  </script>
+</body>
+</html>

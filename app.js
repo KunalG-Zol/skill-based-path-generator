@@ -1,9 +1,16 @@
-const express = require('express');
+import express from 'express';
+import bodyParser from 'body-parser';
+import path from 'path';
+import ejs from 'ejs';
+
+
 const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
 const port = 3000;
 
 app.get('/', (req, res) => {
-  res.send('Hello from Node.js in Docker using node:22-alpinee!');
+  res.render("index.ejs");
 });
 
 app.listen(port, () => {
